@@ -1,74 +1,56 @@
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by mpurola on 18.10.15.
  */
 public class Articles {
+
     public static void main(String[] args) {
-        int Bruder = 1;
-        int Vater = 1;
-        int Blume = 2;
-        int Mutter = 2;
-        int Kind = 3;
-        int Haus = 3;
 
-        int[] Articles = {1,2,3};
-        int[] Der = new int [1];
-        int[] Die = new int [2];
-        int[] Das = new int [3];
+        String[] articles = new String[]  {"Der", "Die", "Das"};
 
-        System.out.println("Bruder");
+        Map<String,String> wordArticlesPairs = new HashMap<String, String>();
+
+        wordArticlesPairs.put("Bruder", articles[0]);
+        wordArticlesPairs.put("Vater", articles[0]);
+        wordArticlesPairs.put("Blume", articles[1]);
+        wordArticlesPairs.put("Mutter", articles[1]);
+        wordArticlesPairs.put("Kind", articles[2]);
+        wordArticlesPairs.put("Haus", articles[2]);
 
 
-        String[] a = {"Bruder", "Vater"};
-        String[] b = {"Der"};
+        Iterator<String> articlesIterator = wordArticlesPairs.keySet().iterator();
 
+        while(articlesIterator.hasNext()) {
+            String sona = articlesIterator.next();
 
-        Arrays.equals(a, b);
+            System.out.println(sona);
 
-        System.out.println(Arrays.toString(b));
+            for (int i = 0; i < articles.length; i++) {
+                System.out.println(i + ": " + articles[i]);
+            }
 
+            while(true) {
 
-        String[] c = {"Blume", "Mutter"};
-        String[] d = {"Die"};
+                System.out.print("Write the corrent number to select article: ");
 
-        Arrays.equals(c, d);
+                int answer = TextIO.getlnInt();
 
-        System.out.println(Arrays.toString(d));
+                if (answer >= articles.length || answer < 0) {
+                    System.out.println("Please try again");
+                    continue;  // jump back beginning of this while loop
+                }
 
-        String[] e = {"Kind", "Haus"};
-        String[] f = {"Das"};
-
-        Arrays.equals(e, f);
-
-        System.out.println(Arrays.toString(f));
-
-
-
-
-        Scanner user = new Scanner(System.in);
-
-
-        System.out.println("Click on the correct article");
-        int entry = user.nextInt();
-        int hit = Articles[entry];
-        if (hit == 1) {
-            System.out.println("Correct answer!");
-
-        } if (hit!= 1)
-
-        {
-            System.out.println("Wrong answer, try again!");
-
-
-
-
-
+                if (articles[answer].equals(wordArticlesPairs.get(sona))) {
+                    System.out.println("Correct!");
+                    break;  // exits this while loop
+                } else {
+                    System.out.println("Wrong!");
+                }
+            }
         }
-        }
-    }
+   }
+}
 
 
 
